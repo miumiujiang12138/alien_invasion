@@ -16,7 +16,8 @@ def run_game():
         """ for event in pygame.event.get():       #监测事件函数    
              if event.type == pygame.QUIT:
                 sys.exit() """
-        gf.check_events()
+        gf.check_events(ship)
+        ship.update()
         # 每次循环都重绘屏幕
         gf.update_screen(ai_settings,screen,ship)
     """ screen.fill(ai_settings.bg_color)
