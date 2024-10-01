@@ -46,7 +46,7 @@ def  update_bullets(bullets):
         # print(len(bullets))   
             
 
-def update_screen(ai_settings,screen,ship,bullets):
+def update_screen(ai_settings,screen,ship,alien,bullets):
     """更新屏幕上的图像，并且切换到新屏幕"""
    
     # 每次循环时都重绘屏幕
@@ -54,5 +54,6 @@ def update_screen(ai_settings,screen,ship,bullets):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
+    alien.blitme()
     # 让最近绘制的屏幕可见
     pygame.display.flip()
