@@ -8,9 +8,12 @@ def check_keydown_events(event,ai_settings,screen,ship,bullets):
     elif event.key == pygame.K_LEFT:
         ship.moving_left = True
     elif event.key == pygame.K_SPACE:
-        # 创建一颗子弹并且将其加入到编组bullets中
-        new_bullet = bullet.Bullet(ai_settings,screen,ship)
-        bullets.add(new_bullet)
+       fire_bullet(ai_settings,screen,ship,bullets)
+def fire_bullet(ai_settings,screen,ship,bullets):
+     # 创建一颗子弹并且将其加入到编组bullets中
+    if len(bullets) < ai_settings.bullets_allowed:
+       new_bullet = bullet.Bullet(ai_settings,screen,ship)
+       bullets.add(new_bullet)
     
 def check_keyup_events(event,ship):
     """响应松开"""
@@ -29,7 +32,16 @@ def check_events(ai_settings,screen,ship,bullets):
         elif event.type == pygame.KEYUP:
             check_keyup_events(event,ship)
         
-            
+def  update_bullets(bullets):
+    """更新子弹位置，并且删除已经消失的子弹"""   
+    # 更新子弹位置
+    bullets.update()
+    # 删除已消失的子弹
+    for bullet in bullet.copy():    # 遍历是用的bullet编组的副本，删除是在bullet编组中进行的
+                                        # 如果在for循环中从列表或者编组中删除条目会导致混乱和出错
+        if bullet.rect.bottom <= 0:
+         bullets.remove(bullet)
+        # print(len(bullets))   
             
 
 def update_screen(ai_settings,screen,ship,bullets):
