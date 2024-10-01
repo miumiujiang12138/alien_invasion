@@ -9,9 +9,11 @@ def check_keydown_events(event,ai_settings,screen,ship,bullets):
         ship.moving_left = True
     elif event.key == pygame.K_SPACE:
        fire_bullet(ai_settings,screen,ship,bullets)
+    elif event.key == pygame.K_q:
+        sys.exit()
 def fire_bullet(ai_settings,screen,ship,bullets):
      # 创建一颗子弹并且将其加入到编组bullets中
-    if len(bullets) < ai_settings.bullets_allowed:
+    if len(bullets) < ai_settings.bullet_allowed:
        new_bullet = bullet.Bullet(ai_settings,screen,ship)
        bullets.add(new_bullet)
     
@@ -37,7 +39,7 @@ def  update_bullets(bullets):
     # 更新子弹位置
     bullets.update()
     # 删除已消失的子弹
-    for bullet in bullet.copy():    # 遍历是用的bullet编组的副本，删除是在bullet编组中进行的
+    for bullet in bullets.copy():    # 遍历是用的bullet编组的副本，删除是在bullet编组中进行的
                                         # 如果在for循环中从列表或者编组中删除条目会导致混乱和出错
         if bullet.rect.bottom <= 0:
          bullets.remove(bullet)
