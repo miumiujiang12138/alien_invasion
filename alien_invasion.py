@@ -14,6 +14,9 @@ def run_game():
     ship = Ship(ai_settings,screen)     # 创建一艘飞船
     bullets = Group()                   # 创建一个用于存储子弹的编组
     alien = Alien(ai_settings,screen)
+    aliens = Group()
+    # 创建外星人群
+    gf.create_fleet(ai_settings,screen,aliens)
     #开始游戏的主循环
     while True:
         # 监视键盘和鼠标事件
@@ -24,7 +27,7 @@ def run_game():
         ship.update()
         gf.update_bullets(bullets)
         # 每次循环都重绘屏幕
-        gf.update_screen(ai_settings,screen,ship,alien,bullets)
+        gf.update_screen(ai_settings,screen,ship,aliens,bullets)
     """ screen.fill(ai_settings.bg_color)
         # 在指定位置绘制飞船
           ship.blitme()  
