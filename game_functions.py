@@ -83,7 +83,7 @@ def get_number_rows(ai_settings,ship_height,alien_height):
     available_space_y = (ai_settings.screen_height-(3*alien_height)-ship_height)
     number_rows = int(available_space_y/(2*alien_height))
     return number_rows
-def create_fleet(ai_settings,screen,aliens):
+def create_fleet(ai_settings,screen,ship,aliens):
     """创建外星人群"""
     # 创建一个外星人，并计算一行可以容纳多少个外星人
     # 外星人间距为外星人宽度
@@ -95,4 +95,4 @@ def create_fleet(ai_settings,screen,aliens):
     # 创建第一行外星人
     for row_number in range(number_rows):
      for alien_number in range(number_aliens_x):
-        create_alien(ai_settings,screen,aliens,alien_number)
+        create_alien(ai_settings,screen,aliens,alien_number,row_number)
