@@ -29,7 +29,7 @@ def run_game():
         gf.check_events(ai_settings,screen,ship,bullets)
         ship.update()
         gf.update_bullets(ai_settings,screen,ship,aliens,bullets)
-        gf.update_aliens(ai_settings,screen,ship,aliens,bullets)
+        gf.update_aliens(ai_settings,stats,screen,ship,aliens,bullets)
         # 每次循环都重绘屏幕
         gf.update_screen(ai_settings,screen,ship,aliens,bullets)
     """ screen.fill(ai_settings.bg_color)

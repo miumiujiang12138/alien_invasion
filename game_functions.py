@@ -1,6 +1,7 @@
 import sys
 import pygame
 import bullet
+from time import sleep
 from alien import Alien
 import ship
 def check_keydown_events(event,ai_settings,screen,ship,bullets):
@@ -113,11 +114,22 @@ def change_fleet_direction(ai_settings,aliens):
         alien.rect.y += ai_settings.fleet_drop_speed
     ai_settings.fleet_direction *= -1
 
-def update_aliens(ai_seetings,ship,aliens):
+def update_aliens(ai_settings,stats,screen,ship,aliens,bullets):
     """更新外星人群中所有外星人的位置"""
-    check_fleet_edges(ai_seetings,aliens)
+    check_fleet_edges(ai_settings,aliens)
     aliens.update()
     # 检测外星人和飞船之间的碰撞
     if pygame.sprite.spritecollideany(ship,aliens):
-        print("Ship hit!!!")
+        # print("Ship hit!!!")
+        ship_hit(ai_settings,stats,screen,ship,aliens,bullets)
+def ship_hit(ai_settings,stats,screen,ship,aliens,bullets):
+    """响应外星人撞到飞船"""
+    stats.ship_left -= 1
+    aliens.empty()
+    bullets.empty()
+    create_fleet(ai_settings,screen,ship,aliens)
+    ship.center_ship()
+    # 暂停
+    sleep(0.5)
+
 
