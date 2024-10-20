@@ -8,7 +8,7 @@ class Settings():
         self.bg_color = (230,230,230)
         self.ship_speed_factor = 1.5   # 设置飞船的速度
         # 子弹设置
-        self.bullet_speed_factor = 1
+        self.bullet_speed_factor = 3
         self.bullet_width = 6
         self.bullet_height = 15
         self.bullet_color = 60,60,60
