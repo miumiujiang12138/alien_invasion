@@ -122,6 +122,7 @@ def update_aliens(ai_settings,stats,screen,ship,aliens,bullets):
     if pygame.sprite.spritecollideany(ship,aliens):
         # print("Ship hit!!!")
         ship_hit(ai_settings,stats,screen,ship,aliens,bullets)
+    check_aliens_bottom(ai_settings,stats,screen,ship,aliens,bullets) 
 def ship_hit(ai_settings,stats,screen,ship,aliens,bullets):
     """响应外星人撞到飞船"""
     stats.ship_left -= 1
@@ -132,4 +133,14 @@ def ship_hit(ai_settings,stats,screen,ship,aliens,bullets):
     # 暂停
     sleep(0.5)
 
+def check_aliens_bottom(ai_settings,stats,screen,ship,aliens,bullets):
+    """检查是否有外星人到达了屏幕底端"""
+    screen_rect = screen.get_rect()
+    for alien in aliens.sprites():
+        if alien.rect.bottom >= screen_rect.bottom:
+            # 像飞船被撞到一样进行处理
+            ship_hit(ai_settings,stats,screen,ship,aliens,bullets)
+            break
+
+    
 
