@@ -125,10 +125,13 @@ def update_aliens(ai_settings,stats,screen,ship,aliens,bullets):
     check_aliens_bottom(ai_settings,stats,screen,ship,aliens,bullets) 
 def ship_hit(ai_settings,stats,screen,ship,aliens,bullets):
     """响应飞船被外星人撞到"""
-    if stats.ships_left >0:
+    if stats.ship_left >0:
         # 将ships_left减1
-        stats.ships_left -= 1
-        
+        stats.ship_left -= 1
+        aliens.empty()
+        bullets.empty()
+        create_fleet(ai_settings,screen,ship,aliens)
+        ship.center_ship()
         #暂停一会儿
         sleep(0.5)
     else:
